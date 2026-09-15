@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register for ICT461 — Data Communications and Networking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page">
+
+  <header class="course-header">
+    <p class="course-code">ICT461</p>
+    <h1>Data Communications and Networking</h1>
+    <p class="course-meta">A 3 credit-hour core course in the Department of Information and Communications Technology. Registration closes Friday, 25 September.</p>
+  </header>
+
+  <main>
+    <form id="registration-form" novalidate>
+
+      <p class="form-intro">Fields marked with an asterisk (*) are required. Every control can be reached with Tab and changed with the keyboard alone; if something needs fixing, a message appears under that field.</p>
+
+      <fieldset>
+        <legend>Student details</legend>
+
+        <div class="field">
+          <label for="full-name">Full name *</label>
+          <input type="text" id="full-name" name="fullName" autocomplete="name" required aria-describedby="full-name-error">
+          <p class="error-message" id="full-name-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="student-id">Student ID *</label>
+          <input type="text" id="student-id" name="studentId" inputmode="numeric" pattern="[0-9]{8}" placeholder="e.g. 20231045" required aria-describedby="student-id-hint student-id-error">
+          <p class="field-hint" id="student-id-hint">Enter your 8-digit student number.</p>
+          <p class="error-message" id="student-id-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address *</label>
+          <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="email-error">
+          <p class="error-message" id="email-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="programme">Programme of study *</label>
+          <select id="programme" name="programme" required aria-describedby="programme-error">
+            <option value="">Select your programme</option>
+            <option value="bict">BSc Information and Communications Technology</option>
+            <option value="bcs">BSc Computer Science</option>
+            <option value="dict">Diploma in Information and Communications Technology</option>
+            <option value="other">Other</option>
+          </select>
+          <p class="error-message" id="programme-error" role="alert"></p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Lab session *</legend>
+        <p class="field-hint">Choose one lab group. Seats update as students register, so a group may already be full.</p>
+
+        <div class="session-options" role="radiogroup" aria-describedby="session-error">
+          <label class="session-option">
+            <input type="radio" name="session" value="A" data-seats="6" required>
+            <span class="session-code">Group A</span>
+            <span class="session-time">Tuesdays, 08:00–10:00</span>
+            <span class="session-seats">6 seats left</span>
+          </label>
+
+          <label class="session-option">
+            <input type="radio" name="session" value="B" data-seats="0">
+            <span class="session-code">Group B</span>
+            <span class="session-time">Thursdays, 14:00–16:00</span>
+            <span class="session-seats">Full</span>
+          </label>
+
+          <label class="session-option">
+            <input type="radio" name="session" value="C" data-seats="11">
+            <span class="session-code">Group C</span>
+            <span class="session-time">Fridays, 10:00–12:00</span>
+            <span class="session-seats">11 seats left</span>
+          </label>
+        </div>
+        <p class="error-message" id="session-error" role="alert"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Prerequisites</legend>
+        <div class="field field-checkbox">
+          <input type="checkbox" id="prereq" name="prereq" required aria-describedby="prereq-error">
+          <label for="prereq">I confirm I have passed ICT361, Introduction to Computer Networks *</label>
+        </div>
+        <p class="error-message" id="prereq-error" role="alert"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Optional materials</legend>
+        <div class="field field-checkbox">
+          <input type="checkbox" id="coursepack" name="addons" value="coursepack" data-fee="150">
+          <label for="coursepack">Printed course pack — K150</label>
+        </div>
+        <div class="field field-checkbox">
+          <input type="checkbox" id="labcard" name="addons" value="labcard" data-fee="80">
+          <label for="labcard">Replacement lab access card — K80</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Notes for the registrar</legend>
+        <div class="field">
+          <label for="notes">Special accommodation or comments (optional)</label>
+          <textarea id="notes" name="notes" rows="3"></textarea>
+        </div>
+      </fieldset>
+
+      <section class="summary" aria-live="polite" aria-label="Registration summary, updates automatically">
+        <h2>Registration summary</h2>
+        <dl>
+          <div class="summary-row">
+            <dt>Lab session</dt>
+            <dd id="summary-session">Not yet selected</dd>
+          </div>
+          <div class="summary-row">
+            <dt>Course fee</dt>
+            <dd id="summary-course-fee">K1,200.00</dd>
+          </div>
+          <div class="summary-row">
+            <dt>Optional materials</dt>
+            <dd id="summary-addons">None selected</dd>
+          </div>
+          <div class="summary-row summary-total">
+            <dt>Total due</dt>
+            <dd id="summary-total">K1,200.00</dd>
+          </div>
+        </dl>
+      </section>
+
+      <p class="form-status" id="form-status" role="status"></p>
+
+      <div class="form-actions">
+        <button type="submit">Submit registration</button>
+        <button type="reset">Clear form</button>
+      </div>
+
+    </form>
+  </main>
+
+  <footer>
+    <p>Department of Information and Communications Technology &middot; questions to <a href="mailto:ict-registrar@example.edu">ict-registrar@example.edu</a></p>
+  </footer>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
